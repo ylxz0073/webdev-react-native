@@ -3,7 +3,7 @@ import {View, Alert} from 'react-native'
 import {Text, ListItem} from 'react-native-elements'
 
 class QuestionList extends Component {
-    static navigationOptions = {title: 'Questions'}
+
     constructor(props) {
         super(props)
         this.state = {
@@ -12,8 +12,8 @@ class QuestionList extends Component {
         }
     }
     componentDidMount() {
-        const {navigation} = this.props;
-        const examId = navigation.getParam("examId")
+
+        const examId = this.props.examId
         fetch("http://localhost:8080/api/exam/"+examId+"/question")
             .then(response => (response.json()))
             .then(questions => this.setState({questions}))

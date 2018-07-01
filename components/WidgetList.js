@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {View, Alert} from 'react-native'
+import {View, ScrollView,Alert} from 'react-native'
 import {Text, ListItem} from 'react-native-elements'
 import AssignmentList from "./AssignmentList";
+import ExamList from './ExamList'
 
 class WidgetList extends Component {
     static navigationOptions = {title: 'Widgets'}
@@ -29,12 +30,20 @@ class WidgetList extends Component {
     render() {
         // console.log(this.props.navigation.getParam("topicId"))
         return(
-            <View>
-                <Text>{this.state.topicId}</Text>
-                <AssignmentList
-                    topicId={this.props.navigation.getParam("topicId")}
-                    navigate={this.props.navigation}/>
-            </View>
+            <ScrollView>
+                <View>
+                    <Text>{this.state.topicId}</Text>
+                    <AssignmentList
+                        topicId={this.props.navigation.getParam("topicId")}
+                        navigate={this.props.navigation}/>
+                </View>
+                <View>
+                    <Text>{this.state.topicId}</Text>
+                    <ExamList
+                        topicId={this.props.navigation.getParam("topicId")}
+                        navigate={this.props.navigation}/>
+                </View>
+            </ScrollView>
 
         )
     }

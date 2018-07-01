@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {View, Alert} from 'react-native'
 import {Text, Button, ListItem} from 'react-native-elements'
-import AssignmentService from "../services/AssignmentService";
+import ExamService from "../services/ExamService";
 import Swipeout from 'react-native-swipeout'
 
-class AssignmentList extends Component {
+class ExamList extends Component {
 
     constructor(props) {
         super(props)
@@ -16,33 +16,33 @@ class AssignmentList extends Component {
             topicId: 1,
             widgetId: 1
         }
-        this.refreshAssignmentList = this.refreshAssignmentList.bind(this)
-        this.assignmentService = AssignmentService.instance
+        this.refreshExamList = this.refreshExamList.bind(this)
+        this.examService = ExamService.instance
     }
     componentWillMount() {
 
         // this.state.topicId = topicId
-        this.refreshAssignmentList()
+        this.refreshExamList()
     }
 
     componentWillReceiveProps(newProps) {
-        this.refreshAssignmentList()
+        this.refreshExamList()
     }
 
-    refreshAssignmentList() {
+    refreshExamList() {
         // const {navigation} = this.props;
         // console.log('*** refresh ***')
         const topicId = this.props.topicId
         this.setState({topicId: topicId})
-        this.assignmentService.findAllAssignmentsForTopic(topicId)
+        this.examService.findAllExamsForTopic(topicId)
             .then(widgets => this.setState({widgets}))
 
 
     }
 
-    deleteAssignment(widgetId) {
-        this.assignmentService.deleteAssignment(widgetId)
-            .then(() => {this.refreshAssignmentList()})
+    deleteExam(widgetId) {
+        this.examService.deleteExam(widgetId)
+            .then(() => {this.refreshExamList()})
 
     }
 
@@ -51,7 +51,7 @@ class AssignmentList extends Component {
             text: 'Delete',
             backgroundColor: 'red',
             // underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-            onPress: () => { this.deleteAssignment(this.state.widgetId) }
+            onPress: () => { this.deleteExam(this.state.widgetId) }
         }]
 
         return(
@@ -60,11 +60,11 @@ class AssignmentList extends Component {
                 <Button	backgroundColor="green"
                            color="white"
                            onPress={() => this.props.navigate
-                               .navigate("AssignmentEditor",
+                               .navigate("ExamEditor",
                                    {isEditing: false,
-                                       refreshAssignmentList:this.refreshAssignmentList,
+                                       refreshExamList:this.refreshExamList,
                                        topicId: this.props.topicId})}
-                           title="New Assignment"/>
+                           title="New Exam"/>
                 {/*{console.log('###render###')}*/}
                 {this.state.widgets.sort((x, y) => {
                     return x.id - y.id;
@@ -73,21 +73,21 @@ class AssignmentList extends Component {
                         <Swipeout right={swipeBtns}
                                   key={index}
                                   autoClose={true}
-                                onOpen={()=>{this.setState({widgetId: widget.id})}}
+                                  onOpen={()=>{this.setState({widgetId: widget.id})}}
                                   backgroundColor= 'transparent'>
                             <ListItem
                                 onPress={() => this.props.navigate
-                                    .navigate("AssignmentEditor",
+                                    .navigate("ExamEditor",
                                         {isEditing: true,
-                                            widgetId: widget.id,
+                                            examId: widget.id,
                                             topicId: this.props.topicId,
-                                            refreshAssignmentList:this.refreshAssignmentList
-                                            }
-                                        )}
+                                            refreshExamList:this.refreshExamList
+                                        }
+                                    )}
                                 // onPress={() =>  console.log(widget.id)}
                                 key={index}
-                                subtitle={widget.paragraph}
-                                title={widget.assignmentTitle}/>
+                                subtitle={widget.description}
+                                title={widget.examTitle}/>
                         </Swipeout>
                     ))}
             </View>
@@ -96,4 +96,4 @@ class AssignmentList extends Component {
 
     }
 }
-export default AssignmentList
+export default ExamList
