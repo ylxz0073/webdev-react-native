@@ -14,7 +14,8 @@ class AssignmentEditor extends React.Component {
             topicId: '',
             isEditing: false,
             assignmentTitle: '',
-            paragraph: ''
+            paragraph: '',
+            points: ''
         }
         this.assignmentService = AssignmentService.instance
     }
@@ -25,20 +26,17 @@ class AssignmentEditor extends React.Component {
     componentDidMount() {
         const {navigation} = this.props;
         const topicId = navigation.getParam('topicId')
-        // this.state.topicId = topicId
         const isEditing = navigation.getParam('isEditing')
         const refreshAssignmentList = navigation.getParam('refreshAssignmentList')
         this.setState({isEditing: isEditing,
                         topicId: topicId,
                         refreshAssignmentList: refreshAssignmentList})
-        // this.state.isEditing = isEditing
-
-        fetch("http://localhost:8080/api/assignment/"+this.props.navigation.getParam('widgetId'))
-            .then(response => (response.json()))
+        this.assignmentService.findAssignmentForId(this.props.navigation.getParam('widgetId'))
             .then(widgets => {
 
                 this.setState({assignmentTitle: widgets.assignmentTitle,
-                                paragraph: widgets.paragraph})
+                                paragraph: widgets.paragraph,
+                                points: widgets.points})
                 // console.log("***" + widgets[0])
                 // console.log(JSON.stringify(widgets))
             })
@@ -51,7 +49,8 @@ class AssignmentEditor extends React.Component {
         this.assignmentService.updateAssignment(
             this.props.navigation.getParam('widgetId'),
             {assignmentTitle: this.state.assignmentTitle,
-                paragraph: this.state.paragraph})
+                paragraph: this.state.paragraph,
+                points: this.state.points})
             .then(() => {refreshAssignmentList()})
             .then(this.props.navigation.goBack())
 
@@ -63,7 +62,8 @@ class AssignmentEditor extends React.Component {
         this.assignmentService.createAssignment(
             this.props.navigation.getParam('topicId'),
             {assignmentTitle: this.state.assignmentTitle,
-                paragraph: this.state.paragraph})
+                paragraph: this.state.paragraph,
+                points: this.state.points})
             .then(() => {refreshAssignmentList()})
             .then(this.props.navigation.goBack())
 
@@ -94,6 +94,14 @@ class AssignmentEditor extends React.Component {
                 <FormValidationMessage>
                     Description is required
                 </FormValidationMessage>
+                <FormLabel>Points</FormLabel>
+                <FormInput onChangeText={
+                    text => this.updateForm({points: text})
+                }
+                           value={this.state.points}/>
+                <FormValidationMessage>
+                    Points is required
+                </FormValidationMessage>
 
                 {/*<CheckBox onPress={() => this.updateForm({isTrue: !this.state.isTrue})}*/}
                 {/*checked={this.state.isTrue} title='The answer is true'/>*/}
@@ -114,6 +122,7 @@ class AssignmentEditor extends React.Component {
                 <View style={{padding: 15}}>
                     <Text h3>Preview</Text>
                     <Text h2>{this.state.assignmentTitle}</Text>
+                    <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>
                     <Text>{this.state.paragraph}</Text>
                     {/*<TextInput*/}
                         {/*multiline={true}*/}

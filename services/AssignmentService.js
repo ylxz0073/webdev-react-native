@@ -38,6 +38,15 @@ export default class AssignmentService {
             return response.json(); })
     }
 
+    findAssignmentForId(assignmentId) {
+        return fetch(
+            ALL_ASSIGNMENT_API_URL + '/' + assignmentId
+                )
+            .then(function (response) {
+                return response.json();
+            })
+    }
+
     findAllAssignmentsForTopic(topicId) {
         return fetch(
             ASSIGNMENT_API_URL
