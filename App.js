@@ -17,6 +17,7 @@ import LessonList from './components/LessonList'
 import TopicList from './components/TopicList'
 import WidgetList from './components/WidgetList'
 import QuestionList from './components/QuestionList'
+import AssignmentEditor from './elements/AssignmentEditor'
 
 class Home extends React.Component {
     static navigationOptions = {
@@ -43,6 +44,10 @@ class Home extends React.Component {
                 <Button title="Go to Screen B"
                         onPress={() => this.props.navigation
                             .navigate('ScreenB') } />
+                <Button title="Go to Widget List"
+                        onPress={() => this.props.navigation
+                            .navigate("WidgetList", {topicId: 32})} />
+
 
 
                 <TrueFalseQuestionEditor/>
@@ -97,7 +102,8 @@ const App = createStackNavigator({
     MultipleChoiceQuestionEditor,
     ScreenA,
     ScreenB,
-    ScreenX
+    ScreenX,
+    AssignmentEditor
 });
 
 export default App;
