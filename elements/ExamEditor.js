@@ -128,8 +128,11 @@ class ExamEditor extends React.Component {
                     <Text>{this.state.description}</Text>
 
                     {console.log("examId: "+this.props.navigation.getParam('examId'))}
+
                     {this.props.navigation.getParam('examId') &&
-                        <QuestionList examId={this.props.navigation.getParam('examId')}/>}
+                        <QuestionList
+                            navigate={this.props.navigation}
+                            examId={this.props.navigation.getParam('examId')}/>}
                 </View>
 
             </ScrollView>

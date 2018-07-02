@@ -12,8 +12,11 @@ class QuestionTypePicker extends React.Component {
         return (
             <View>
                 <Picker
-                    onValueChange={(itemValue, itemIndex) =>
-                        this.setState({questionType: itemValue})}
+                    onValueChange={(itemValue, itemIndex) => {
+                        this.setState({questionType: itemValue})
+                        this.props.pickQuestionType(itemValue)
+                    }
+                        }
                     selectedValue={this.state.questionType}>
                     <Picker.Item value="MC" label="Multiple choice" />
                     <Picker.Item value="ES" label="Essay" />
