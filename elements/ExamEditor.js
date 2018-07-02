@@ -48,8 +48,9 @@ class ExamEditor extends React.Component {
     updateExam() {
         const {navigation} = this.props;
         const refreshExamList = navigation.getParam('refreshExamList')
+        console.log(this.props.navigation.getParam('examId'))
         this.examService.updateExam(
-            this.props.navigation.getParam('widgetId'),
+            this.props.navigation.getParam('examId'),
             {examTitle: this.state.examTitle,
                 description: this.state.description,
                 points: this.state.points})
@@ -127,7 +128,6 @@ class ExamEditor extends React.Component {
                     <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>
                     <Text>{this.state.description}</Text>
 
-                    {console.log("examId: "+this.props.navigation.getParam('examId'))}
 
                     {this.props.navigation.getParam('examId') &&
                         <QuestionList

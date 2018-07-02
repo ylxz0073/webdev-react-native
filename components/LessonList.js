@@ -23,6 +23,7 @@ class LessonList extends Component {
     render() {
         return(
             <View style={{padding: 15}}>
+
                 {this.state.lessons.map(
                     (lesson, index) => (
                         <ListItem

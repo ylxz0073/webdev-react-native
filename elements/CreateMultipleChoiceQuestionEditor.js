@@ -6,7 +6,7 @@ import {FormLabel, FormInput, FormValidationMessage}
 import Swipeout from 'react-native-swipeout'
 import MultipleChoiceQuestionService from '../services/MultipleChoiceQuestionService'
 
-class MultipleChoiceQuestionEditor extends React.Component {
+class CreateMultipleChoiceQuestionEditor extends React.Component {
     // static navigationOptions = { title: "Multiple Choice"}
     constructor(props) {
         super(props)
@@ -23,30 +23,30 @@ class MultipleChoiceQuestionEditor extends React.Component {
         this.addChoice = this.addChoice.bind(this)
         this.checkChoice = this.checkChoice.bind(this)
         this.deleteChoice = this.deleteChoice.bind(this)
-        // this.createQuestion = this.createQuestion.bind(this)
+        this.createQuestion = this.createQuestion.bind(this)
         // this.updateQuestion = this.updateQuestion.bind(this)
-        this.saveQuestion = this.saveQuestion.bind(this)
         this.multipleChoiceQuestionService=MultipleChoiceQuestionService.instance
     }
 
     componentDidMount(){
-        // console.log(this.props.questionId)
-        this.updateQuestion()
+        // console.log(this.props.examId)
+        // () => this.updateQuestion()
     }
 
 
-    updateQuestion(){
-        this.multipleChoiceQuestionService.findMultipleChoiceQuestionForId(this.props.questionId)
-            .then((response)=> {
-                // console.log(response)
-                this.setState({choices: response.choices,
-                                title: response.questionTitle,
-                                description: response.description,
-                                points: response.points})
+    // componentWillReceiveProps(newProps) {
+    //     this.forceUpdate()
+    //     console.log('force update')
+    // }
 
-            })
-    }
-
+    // updateQuestion(){
+    //     this.multipleChoiceQuestionService.findAllMultipleChoiceQuestionsForExam(this.props.examId)
+    //         .then((response)=> {
+    //             console.log(response)
+    //             this.setState({choices: response})
+    //
+    //         })
+    // }
 
     updateForm(newState) {
         this.setState(newState)
@@ -70,27 +70,15 @@ class MultipleChoiceQuestionEditor extends React.Component {
         // console.log(this.state.choices)
     }
 
-    saveQuestion(){
-        const updateQuestionList = this.props.navigate.getParam('updateQuestionList')
-        this.multipleChoiceQuestionService
-            .updateMultipleChoiceQuestion(this.props.questionId,
-                {questionTitle: this.state.title,
-                    description: this.state.description,
-                    points: this.state.points,
-                    choices: this.state.choices})
-            .then(()=>updateQuestionList())
-            .then(this.props.navigate.goBack())
-    }
-
     createQuestion() {
         const updateQuestionList = this.props.navigate.getParam('updateQuestionList')
 
         this.multipleChoiceQuestionService
             .createMultipleChoiceQuestion(this.props.examId,
                 {questionTitle: this.state.title,
-                description: this.state.description,
-                points: this.state.points,
-                choices: this.state.choices})
+                    description: this.state.description,
+                    points: this.state.points,
+                    choices: this.state.choices})
             .then(()=>updateQuestionList())
             .then(this.props.navigate.goBack())
     }
@@ -148,7 +136,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
 
                 <Button	backgroundColor="green"
                            color="white"
-                           onPress={() => this.saveQuestion()}
+                           onPress={() => this.createQuestion()}
                            title="Save"/>
                 <Button	backgroundColor="red"
                            color="white"
@@ -163,16 +151,16 @@ class MultipleChoiceQuestionEditor extends React.Component {
                     {this.state.choices.sort((x, y) => {
                         return x.id - y.id;
                     })
-                    .map(
+                        .map(
                         (choice, index) => (
                             <Swipeout right={swipeBtns}
                                       key={index}
                                       autoClose={true}
                                       style={styles.container}
                                       onOpen={()=>{this.setState({swipeIndex: index})
-                                                    console.log(this.state.swipeIndex)}}
+                                          console.log(this.state.swipeIndex)}}
                                       backgroundColor= 'transparent'>
-                            {/*<View*/}
+                                {/*<View*/}
                                 {/*key={index}*/}
                                 {/*style={styles.container}>*/}
                                 <CheckBox
@@ -184,7 +172,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
                                     onPress={()=> this.checkChoice(index)}
                                     checked={this.state.checked == index}
                                 />
-                            {/*</View>*/}
+                                {/*</View>*/}
                             </Swipeout>
 
                         ))}
@@ -193,8 +181,8 @@ class MultipleChoiceQuestionEditor extends React.Component {
                                    color="white"
                                    title="Submit"/>
                         <Button	backgroundColor="red"
-                               color="white"
-                               title="Cancel"/>
+                                   color="white"
+                                   title="Cancel"/>
                     </View>
                 </View>
             </View>
@@ -211,4 +199,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MultipleChoiceQuestionEditor
+export default CreateMultipleChoiceQuestionEditor

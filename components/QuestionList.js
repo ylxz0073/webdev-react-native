@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {View, Alert} from 'react-native'
 import {Text, ListItem, Button} from 'react-native-elements'
-import ExamService from '../services/ExamService'
+import QuestionService from '../services/QuestionService'
+import Swipeout from 'react-native-swipeout'
 
 class QuestionList extends Component {
 
@@ -9,10 +10,12 @@ class QuestionList extends Component {
         super(props)
         this.state = {
             questions: [],
-            examId: 1
+            examId: 1,
+            questionId: 1
         }
         this.updateQuestionList=this.updateQuestionList.bind(this)
-        this.examService=ExamService.instance
+        this.deleteQuestion=this.deleteQuestion.bind(this)
+        this.questionService=QuestionService.instance
     }
     componentDidMount() {
         this.updateQuestionList()
@@ -24,20 +27,33 @@ class QuestionList extends Component {
 
     updateQuestionList() {
         const examId = this.props.examId
-        fetch("http://localhost:8080/api/exam/"+examId+"/question")
-            .then(response => (response.json()))
+        this.questionService.findAllQuestionsForExam(examId)
             .then(questions => {this.setState({questions})
-                console.log(this.state.questions)})
+                // console.log(this.state.questions)
+            })
+    }
+
+    deleteQuestion(QId) {
+        this.questionService.deleteQuestion(QId)
+            .then(() => {this.updateQuestionList()})
+
     }
 
 
     render() {
+        let swipeBtns = [{
+            text: 'Delete',
+            backgroundColor: 'red',
+            // underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
+            onPress: () => { this.deleteQuestion(this.state.questionId) }
+        }]
+
         return(
             <View>
             <Button	backgroundColor="green"
                        color="white"
-                       onPress={() => {this.props.navigate.navigate("QuestionEditor",
-                           {isEditing: true,
+                       onPress={() => {this.props.navigate.navigate("CreateQuestionEditor",
+                           {isEditing: false,
                                examId: this.props.examId,
                                updateQuestionList: this.updateQuestionList
                                // widgetId: widget.id,
@@ -47,20 +63,37 @@ class QuestionList extends Component {
                        }}
                        title="Create Question"/>}
             <View style={{padding: 15}}>
-                {this.state.questions.map(
+
+                {this.state.questions.sort((x, y) => {
+                    return x.id - y.id;
+                }).map(
                     (question, index) => (
-                        <ListItem
-                            // onPress={() => {
-                            //     if(question.type === "TrueFalse")
-                            //         this.props.navigation
-                            //             .navigate("TrueFalseQuestionEditor", {questionId: question.id})
-                            //     if(question.type === "MultipleChoice")
-                            //         this.props.navigation
-                            //             .navigate("MultipleChoiceQuestionEditor", {questionId: question.id})
-                            // }}
-                            key={index}
-                            subtitle={question.description}
-                            title={question.questionTitle}/>))}
+                        <Swipeout right={swipeBtns}
+                                  key={index}
+                                  autoClose={true}
+                                  onOpen={()=>{this.setState({questionId: question.id})}}
+                                  backgroundColor= 'transparent'>
+                            <ListItem
+                                // onPress={() => {
+                                //     if(question.type === "TrueFalse")
+                                //         this.props.navigation
+                                //             .navigate("TrueFalseQuestionEditor", {questionId: question.id})
+                                //     if(question.type === "MultipleChoice")
+                                //         this.props.navigation
+                                //             .navigate("MultipleChoiceQuestionEditor", {questionId: question.id})
+                                // }}
+                                onPress={() => {this.props.navigate.navigate("QuestionEditor",
+                                    {isEditing: true,
+                                        examId: this.props.examId,
+                                        questionId: question.id,
+                                        questionType: question.type,
+                                        updateQuestionList: this.updateQuestionList
+                                    })}}
+                                key={index}
+                                subtitle={question.description}
+                                title={question.questionTitle}/>
+                        </Swipeout>
+                            ))}
             </View>
             </View>
         )

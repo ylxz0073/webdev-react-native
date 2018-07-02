@@ -1,24 +1,24 @@
-const EXAM_API_URL =
-    'http://localhost:8080/api/topic/TID/exam';
-const ALL_EXAM_API_URL =
-    'http://localhost:8080/api/exam'
+const ESSAY_API_URL =
+    'http://localhost:8080/api/exam/EID/essay';
+const ALL_ESSAY_API_URL =
+    'http://localhost:8080/api/essay'
 
 let _singleton = Symbol();
-export default class ExamService {
+export default class EssayService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Singleton!!!');
     }
     static get instance() {
         if(!this[_singleton])
-            this[_singleton] = new ExamService(_singleton);
+            this[_singleton] = new EssayService(_singleton);
         return this[_singleton]
     }
 
-    createExam(topicId, exam) {
-        var exams = [exam]
-        return fetch(EXAM_API_URL.replace('TID', topicId),
-            {   body: JSON.stringify(exams),
+    createEssayQuestion(examId, question) {
+        var questions = [question]
+        return fetch(ESSAY_API_URL.replace('EID', examId),
+            {   body: JSON.stringify(questions),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
             }).then(function (response)
@@ -26,11 +26,11 @@ export default class ExamService {
             return response; })
     }
 
-    updateExam(examId, exam) {
+    updateEssayQuestion(QId, question) {
         // console.log(assignmentId)
         // console.log(assignment)
-        return fetch(ALL_EXAM_API_URL + '/' + examId,
-            {   body: JSON.stringify(exam),
+        return fetch(ALL_ESSAY_API_URL + '/' + QId,
+            {   body: JSON.stringify(question),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'PUT'
             }).then(function (response)
@@ -38,33 +38,33 @@ export default class ExamService {
             return response.json(); })
     }
 
-    findExamForId(examId) {
+    findEssayQuestionForId(QId) {
         return fetch(
-            ALL_EXAM_API_URL + '/' + examId
+            ALL_ESSAY_API_URL + '/' + QId
         )
             .then(function (response) {
                 return response.json();
             })
     }
 
-    findAllExamsForTopic(topicId) {
+    findAllEssayQuestionsForExam(EID) {
         return fetch(
-            EXAM_API_URL
-                .replace('TID', topicId))
+            ESSAY_API_URL
+                .replace('EID', EID))
             .then(function (response) {
                 return response.json();
             })
     }
 
-    findALlExams() {
-        return fetch(ALL_EXAM_API_URL).then(function(response){
+    findAllEssayQuestions() {
+        return fetch(ALL_ESSAY_API_URL).then(function(response){
             return response.json();
         })
     }
 
-    deleteExam(examId) {
+    deleteEssayQuestion(QId) {
         return fetch(
-            ALL_EXAM_API_URL + '/' + examId, {
+            ALL_ESSAY_API_URL + '/' + QId, {
                 method: 'delete'
             })
     }

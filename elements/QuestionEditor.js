@@ -6,9 +6,10 @@ import {FormLabel, FormInput, FormValidationMessage, }
 import AssignmentService from '../services/AssignmentService'
 import QuestionTypePicker from "./QuestionTypePicker";
 import MultipleChoiceQuestionEditor from "./MultipleChoiceQuestionEditor";
+import EssayQuestionEditor from './EssayQuestionEditor'
 
 class QuestionEditor extends React.Component {
-    static navigationOptions = { title: "Question"}
+    static navigationOptions = { title: "Edit Question"}
     constructor(props) {
         super(props)
         this.state={
@@ -19,7 +20,9 @@ class QuestionEditor extends React.Component {
     }
 
     componenetDidMount() {
-        this.setState({ examId: this.props.navigation.getParam('examId')})
+        console.log(this.props.navigation.getParam('questionType'))
+        this.setState({ examId: this.props.navigation.getParam('examId'),
+                        questionType: this.props.navigation.getParam('questionType')})
     }
 
     pickQuestionType(type) {
@@ -32,12 +35,21 @@ class QuestionEditor extends React.Component {
         // console.log(this.state.isEditing)
         return(
             <ScrollView>
-                <QuestionTypePicker
-                    pickQuestionType={this.pickQuestionType}/>
-                {this.state.questionType == 'MC' &&
+                <Text>{this.props.navigation.getParam('questionId')}
+                    {this.props.navigation.getParam('questionType')}
+                </Text>
+                {/*<QuestionTypePicker*/}
+                    {/*pickQuestionType={this.pickQuestionType}/>*/}
+                {this.props.navigation.getParam('questionType') == 'MC' &&
                     <MultipleChoiceQuestionEditor
                         navigate={this.props.navigation}
+                        questionId={this.props.navigation.getParam('questionId')}
                         examId={this.props.navigation.getParam('examId')}/>}
+                {this.props.navigation.getParam('questionType') == 'ES' &&
+                <EssayQuestionEditor
+                    navigate={this.props.navigation}
+                    questionId={this.props.navigation.getParam('questionId')}
+                    examId={this.props.navigation.getParam('examId')}/>}
             </ScrollView>
         )
     }
