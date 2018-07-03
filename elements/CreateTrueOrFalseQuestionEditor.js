@@ -4,9 +4,9 @@ import {Text, Button,  CheckBox, ListItem} from 'react-native-elements'
 import {FormLabel, FormInput, FormValidationMessage}
     from 'react-native-elements'
 import Swipeout from 'react-native-swipeout'
-import EssayQuestionService from '../services/EssayQuestionService'
+import TrueOrFaleQuestionService from '../services/TrueOrFalseQuestionService'
 
-class CreateEssayQuestionEditor extends React.Component {
+class CreateTrueOrFalseQuestionEditor extends React.Component {
     // static navigationOptions = { title: "Multiple Choice"}
     constructor(props) {
         super(props)
@@ -16,14 +16,14 @@ class CreateEssayQuestionEditor extends React.Component {
             points: '0',
             options: '',
 
-            checked: '',
+            isTrue: false,
             swipeIndex: 0
         }
 
 
         this.createQuestion = this.createQuestion.bind(this)
         // this.updateQuestion = this.updateQuestion.bind(this)
-        this.essayQuestionService=EssayQuestionService.instance
+        this.trueOrFalseQuestionService=TrueOrFaleQuestionService.instance
     }
 
     componentDidMount(){
@@ -32,19 +32,6 @@ class CreateEssayQuestionEditor extends React.Component {
     }
 
 
-    // componentWillReceiveProps(newProps) {
-    //     this.forceUpdate()
-    //     console.log('force update')
-    // }
-
-    // updateQuestion(){
-    //     this.multipleChoiceQuestionService.findAllMultipleChoiceQuestionsForExam(this.props.examId)
-    //         .then((response)=> {
-    //             console.log(response)
-    //             this.setState({choices: response})
-    //
-    //         })
-    // }
 
     updateForm(newState) {
         this.setState(newState)
@@ -54,12 +41,12 @@ class CreateEssayQuestionEditor extends React.Component {
     createQuestion() {
         const updateQuestionList = this.props.navigate.getParam('updateQuestionList')
 
-        this.essayQuestionService
-            .createEssayQuestion(this.props.examId,
+        this.trueOrFalseQuestionService
+            .createTrueOrFalseQuestion(this.props.examId,
                 {questionTitle: this.state.title,
                     description: this.state.description,
                     points: this.state.points,
-                    })
+                    isTrue: this.state.isTrue})
             .then(()=>updateQuestionList())
             .then(this.props.navigate.goBack())
     }
@@ -119,14 +106,22 @@ class CreateEssayQuestionEditor extends React.Component {
                     <Text h2>{this.state.title}</Text>
                     <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>
                     <Text>{this.state.description}</Text>
-                    <Text h4>Essay answer</Text>
-                    <TextInput
-                        backgroundColor="white"
-                        multiline={true}
-                        numberOfLines={4}
-                        height={80}
-                        // onChangeText={(text) => this.setState({text})}
-                        // value={this.state.text}
+                    <Text h4>True or False</Text>
+                    <CheckBox
+                        key={1}
+                        title={'True'}
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress={()=> this.setState({isTrue: true})}
+                        checked={this.state.isTrue == true}
+                    />
+                    <CheckBox
+                        key={2}
+                        title={'False'}
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress={()=> this.setState({isTrue: false})}
+                        checked={this.state.isTrue == false}
                     />
                     <View style={{flex: 1, flexDirection: 'row'}}>
                         <Button	backgroundColor="green"
@@ -144,11 +139,5 @@ class CreateEssayQuestionEditor extends React.Component {
 
 
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#ecf0f1',
-    },
-});
 
-export default CreateEssayQuestionEditor
+export default CreateTrueOrFalseQuestionEditor

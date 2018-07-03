@@ -7,6 +7,7 @@ import AssignmentService from '../services/AssignmentService'
 import QuestionTypePicker from "./QuestionTypePicker";
 import CreateMultipleChoiceQuestionEditor from "./CreateMultipleChoiceQuestionEditor";
 import CreateEssayQuestionEditor from './CreateEssayQuestionEditor'
+import CreateTrueOrFalseQuestionEditor from './CreateTrueOrFalseQuestionEditor'
 
 class CreateQuestionEditor extends React.Component {
     static navigationOptions = { title: "Create Question"}
@@ -41,6 +42,10 @@ class CreateQuestionEditor extends React.Component {
                     examId={this.props.navigation.getParam('examId')}/>}
                 {this.state.questionType == 'ES' &&
                 <CreateEssayQuestionEditor
+                    navigate={this.props.navigation}
+                    examId={this.props.navigation.getParam('examId')}/>}
+                {this.state.questionType == 'TF' &&
+                <CreateTrueOrFalseQuestionEditor
                     navigate={this.props.navigation}
                     examId={this.props.navigation.getParam('examId')}/>}
             </ScrollView>
