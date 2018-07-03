@@ -16,7 +16,7 @@ class CreateMultipleChoiceQuestionEditor extends React.Component {
             points: '0',
             options: '',
             choices: [],
-            checked: '',
+            checked: 0,
             swipeIndex: 0
         }
 
@@ -78,7 +78,8 @@ class CreateMultipleChoiceQuestionEditor extends React.Component {
                 {questionTitle: this.state.title,
                     description: this.state.description,
                     points: this.state.points,
-                    choices: this.state.choices})
+                    choices: this.state.choices,
+                    correctChoice: this.state.choices[this.state.checked]})
             .then(()=>updateQuestionList())
             .then(this.props.navigate.goBack())
     }

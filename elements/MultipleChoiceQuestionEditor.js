@@ -16,7 +16,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
             points: '0',
             options: '',
             choices: [],
-            checked: '',
+            checked: 0,
             swipeIndex: 0
         }
 
@@ -36,13 +36,15 @@ class MultipleChoiceQuestionEditor extends React.Component {
 
 
     updateQuestion(){
+
         this.multipleChoiceQuestionService.findMultipleChoiceQuestionForId(this.props.questionId)
             .then((response)=> {
                 // console.log(response)
                 this.setState({choices: response.choices,
                                 title: response.questionTitle,
                                 description: response.description,
-                                points: response.points})
+                                points: response.points,
+                                correctChoice: response.correctChoice})
 
             })
     }
@@ -71,29 +73,21 @@ class MultipleChoiceQuestionEditor extends React.Component {
     }
 
     saveQuestion(){
+        console.log(this.state.checked)
+        console.log(this.state.choices[this.state.checked])
         const updateQuestionList = this.props.navigate.getParam('updateQuestionList')
         this.multipleChoiceQuestionService
             .updateMultipleChoiceQuestion(this.props.questionId,
                 {questionTitle: this.state.title,
                     description: this.state.description,
                     points: this.state.points,
-                    choices: this.state.choices})
+                    choices: this.state.choices,
+                    correctChoice: this.state.choices[this.state.checked]})
             .then(()=>updateQuestionList())
             .then(this.props.navigate.goBack())
     }
 
-    createQuestion() {
-        const updateQuestionList = this.props.navigate.getParam('updateQuestionList')
 
-        this.multipleChoiceQuestionService
-            .createMultipleChoiceQuestion(this.props.examId,
-                {questionTitle: this.state.title,
-                description: this.state.description,
-                points: this.state.points,
-                choices: this.state.choices})
-            .then(()=>updateQuestionList())
-            .then(this.props.navigate.goBack())
-    }
 
     render() {
         let swipeBtns = [{
