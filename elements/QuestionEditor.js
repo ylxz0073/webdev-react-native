@@ -8,6 +8,7 @@ import QuestionTypePicker from "./QuestionTypePicker";
 import MultipleChoiceQuestionEditor from "./MultipleChoiceQuestionEditor";
 import EssayQuestionEditor from './EssayQuestionEditor'
 import TrueOrFalseQuestionEditor from './TrueOrFalseQuestionEditor'
+import FillInTheBlankQuestionEditor from "./FillInTheBlankQuestionEditor";
 
 class QuestionEditor extends React.Component {
     static navigationOptions = { title: "Edit Question"}
@@ -53,6 +54,11 @@ class QuestionEditor extends React.Component {
                     examId={this.props.navigation.getParam('examId')}/>}
                 {this.props.navigation.getParam('questionType') == 'TF' &&
                 <TrueOrFalseQuestionEditor
+                    navigate={this.props.navigation}
+                    questionId={this.props.navigation.getParam('questionId')}
+                    examId={this.props.navigation.getParam('examId')}/>}
+                {this.props.navigation.getParam('questionType') == 'FB' &&
+                <FillInTheBlankQuestionEditor
                     navigate={this.props.navigation}
                     questionId={this.props.navigation.getParam('questionId')}
                     examId={this.props.navigation.getParam('examId')}/>}
