@@ -16,6 +16,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
             points: '0',
             options: '',
             choices: [],
+            correctChoice: '',
             checked: 0,
             swipeIndex: 0
         }
@@ -45,7 +46,11 @@ class MultipleChoiceQuestionEditor extends React.Component {
                                 description: response.description,
                                 points: response.points,
                                 correctChoice: response.correctChoice})
-
+                var i = 0
+                for (; i < this.state.choices.length; i++) {
+                    if (this.state.choices[i] === this.state.correctChoice) break
+                }
+                this.setState({checked: i})
             })
     }
 
@@ -61,7 +66,8 @@ class MultipleChoiceQuestionEditor extends React.Component {
     }
 
     checkChoice(index) {
-        this.setState({checked: index})
+        this.setState({checked: index,
+                        correctChoice: this.state.choices[index]})
     }
 
     deleteChoice(index) {

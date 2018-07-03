@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b1ce9ca-4933-491e-8bf0-7d77762f02f3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/elements/CreateTrueOrFalseQuestionEditor.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/elements/TrueOrFalseQuestionEditor.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/services/TrueOrFalseQuestionService.js" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/elements/CreateEssayQuestionEditor.js" afterPath="$PROJECT_DIR$/elements/CreateEssayQuestionEditor.js" />
-      <change beforePath="$PROJECT_DIR$/elements/CreateQuestionEditor.js" afterPath="$PROJECT_DIR$/elements/CreateQuestionEditor.js" />
-      <change beforePath="$PROJECT_DIR$/elements/QuestionEditor.js" afterPath="$PROJECT_DIR$/elements/QuestionEditor.js" />
+      <change beforePath="$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js" afterPath="$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MultipleChoiceQuestionEditor.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MultipleChoiceQuestionEditor.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="179" column="34" lean-forward="true" selection-start-line="171" selection-start-column="32" selection-end-line="179" selection-end-column="34" />
+            <state relative-caret-position="543">
+              <caret line="50" column="49" lean-forward="false" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -42,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateTrueOrFalseQuestionEditor.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CreateTrueOrFalseQuestionEditor.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/elements/CreateTrueOrFalseQuestionEditor.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="572">
@@ -176,13 +170,13 @@
         <option value="$PROJECT_DIR$/services/EssayQuestionService.js" />
         <option value="$PROJECT_DIR$/elements/EssayQuestionEditor.js" />
         <option value="$PROJECT_DIR$/elements/CreateMultipleChoiceQuestionEditor.js" />
-        <option value="$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js" />
         <option value="$PROJECT_DIR$/services/TrueOrFalseQuestionService.js" />
         <option value="$PROJECT_DIR$/elements/CreateEssayQuestionEditor.js" />
         <option value="$PROJECT_DIR$/elements/CreateQuestionEditor.js" />
         <option value="$PROJECT_DIR$/elements/QuestionEditor.js" />
         <option value="$PROJECT_DIR$/elements/TrueOrFalseQuestionEditor.js" />
         <option value="$PROJECT_DIR$/elements/CreateTrueOrFalseQuestionEditor.js" />
+        <option value="$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js" />
       </list>
     </option>
   </component>
@@ -293,7 +287,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76063000" />
+    <option name="totallyTimeSpent" value="77006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="23" width="1164" height="961" extended-state="0" />
@@ -683,14 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="179" column="34" lean-forward="true" selection-start-line="171" selection-start-column="32" selection-end-line="179" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/elements/CreateQuestionEditor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -754,6 +740,14 @@
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="50" column="49" lean-forward="false" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
