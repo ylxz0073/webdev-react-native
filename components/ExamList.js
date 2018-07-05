@@ -55,10 +55,11 @@ class ExamList extends Component {
         }]
 
         return(
-            <View style={{padding: 15}}>
-                <Text>{this.state.topicId}</Text>
+            <View style={{paddingTop: 15}}>
+                {/*<Text>{this.state.topicId}</Text>*/}
                 <Button	backgroundColor="green"
                            color="white"
+                           borderRadius={10}
                            onPress={() => this.props.navigate
                                .navigate("ExamEditor",
                                    {isEditing: false,

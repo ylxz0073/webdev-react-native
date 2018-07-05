@@ -32,13 +32,13 @@ class WidgetList extends Component {
         return(
             <ScrollView>
                 <View>
-                    <Text>{this.state.topicId}</Text>
+                    {/*<Text>{this.state.topicId}</Text>*/}
                     <AssignmentList
                         topicId={this.props.navigation.getParam("topicId")}
                         navigate={this.props.navigation}/>
                 </View>
                 <View>
-                    <Text>{this.state.topicId}</Text>
+                    {/*<Text>{this.state.topicId}</Text>*/}
                     <ExamList
                         topicId={this.props.navigation.getParam("topicId")}
                         navigate={this.props.navigation}/>

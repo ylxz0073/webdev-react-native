@@ -75,8 +75,8 @@ class AssignmentEditor extends React.Component {
         // console.log(this.state.isEditing)
         return(
             <ScrollView>
-                <Text>{this.props.navigation.getParam('topicId')}</Text>
-                <Text>{this.props.navigation.getParam('widgetId')}</Text>
+                {/*<Text>{this.props.navigation.getParam('topicId')}</Text>*/}
+                {/*<Text>{this.props.navigation.getParam('widgetId')}</Text>*/}
                 <FormLabel>Title</FormLabel>
                 <FormInput onChangeText={
                     text => this.updateForm({assignmentTitle: text})
@@ -107,22 +107,32 @@ class AssignmentEditor extends React.Component {
                 {/*checked={this.state.isTrue} title='The answer is true'/>*/}
 
                 {this.state.isEditing &&
+
                     <Button	backgroundColor="green"
                            color="white"
+                               style={{paddingTop: 15}}
+                               borderRadius={10}
                            onPress={() => {this.updateAssignment()
                            }}
                            title="Save"/>}
                 {!this.state.isEditing &&
                     <Button	backgroundColor="green"
                            color="white"
+                               style={{paddingTop: 15}}
+                               borderRadius={10}
                            onPress={() => {this.createAssignment()
                            }}
                            title="Create"/>}
 
                 <View style={{padding: 15}}>
                     <Text h3>Preview</Text>
-                    <Text h2>{this.state.assignmentTitle}</Text>
-                    <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>
+                    <View
+                        style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}
+                    >
+                        <Text h4>{this.state.assignmentTitle}</Text>
+                        {this.state.points && <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>}
+                    </View>
+
                     <Text>{this.state.paragraph}</Text>
                     {/*<TextInput*/}
                         {/*multiline={true}*/}
@@ -152,12 +162,14 @@ class AssignmentEditor extends React.Component {
                         numberOfLines={4}
                         height={35}
                     />
-                    <View style={{flex: 1, flexDirection: 'row'}}>
+                    <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
                     <Button	backgroundColor="green"
                                color="white"
+                               borderRadius={10}
                                title="Submit"/>
                     <Button	backgroundColor="red"
                                color="white"
+                               borderRadius={10}
                                title="Cancel"/>
                     </View>
                 </View>

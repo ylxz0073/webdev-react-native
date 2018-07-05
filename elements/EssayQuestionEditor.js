@@ -110,17 +110,25 @@ class EssayQuestionEditor extends React.Component {
 
                 <Button	backgroundColor="green"
                            color="white"
+                           style={{margin: 5}}
+                           borderRadius={10}
                            onPress={() => this.saveQuestion()}
                            title="Save"/>
                 <Button	backgroundColor="red"
                            color="white"
+                           style={{margin: 5}}
+                           borderRadius={10}
                            onPress={() => this.props.navigate.goBack()}
                            title="Cancel"/>
 
                 <View style={{padding: 15}}>
                     <Text h3>Preview</Text>
-                    <Text h2>{this.state.title}</Text>
-                    <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>
+                    <View
+                        style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}
+                    >
+                        <Text h4>{this.state.title}</Text>
+                        <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>
+                    </View>
                     <Text>{this.state.description}</Text>
                     <Text h4>Essay answer</Text>
                     <TextInput
@@ -131,12 +139,14 @@ class EssayQuestionEditor extends React.Component {
                         // onChangeText={(text) => this.setState({text})}
                         // value={this.state.text}
                     />
-                    <View style={{flex: 1, flexDirection: 'row'}}>
+                    <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
                         <Button	backgroundColor="green"
                                    color="white"
+                                   borderRadius={10}
                                    title="Submit"/>
                         <Button	backgroundColor="red"
                                    color="white"
+                                   borderRadius={10}
                                    title="Cancel"/>
                     </View>
                 </View>

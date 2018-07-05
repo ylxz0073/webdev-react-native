@@ -78,8 +78,8 @@ class ExamEditor extends React.Component {
 
         return(
             <ScrollView>
-                <Text>{this.props.navigation.getParam('topicId')}</Text>
-                <Text>{this.props.navigation.getParam('widgetId')}</Text>
+                {/*<Text>{this.props.navigation.getParam('topicId')}</Text>*/}
+                {/*<Text>{this.props.navigation.getParam('widgetId')}</Text>*/}
                 <FormLabel>Title</FormLabel>
                 <FormInput onChangeText={
                     text => this.updateForm({examTitle: text})
@@ -112,28 +112,38 @@ class ExamEditor extends React.Component {
                 {this.state.isEditing &&
                 <Button	backgroundColor="green"
                            color="white"
+                           style={{paddingTop: 15}}
+                           borderRadius={10}
                            onPress={() => {this.updateExam()
                            }}
                            title="Save"/>}
                 {!this.state.isEditing &&
                 <Button	backgroundColor="green"
                            color="white"
+                           style={{paddingTop: 15}}
+                           borderRadius={10}
                            onPress={() => {this.createExam()
                            }}
                            title="Create"/>}
 
                 <View style={{padding: 15}}>
                     <Text h3>Preview</Text>
-                    <Text h2>{this.state.examTitle}</Text>
-                    <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>
+                    <View
+                        style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}
+                        >
+                        <Text h4>{this.state.examTitle}</Text>
+                        {this.state.points && <Text style={{textAlign: 'right'}}>{this.state.points + 'pts'}</Text>}
+                    </View>
+
+
                     <Text>{this.state.description}</Text>
 
-
+                </View>
                     {this.props.navigation.getParam('examId') &&
                         <QuestionList
                             navigate={this.props.navigation}
                             examId={this.props.navigation.getParam('examId')}/>}
-                </View>
+
 
             </ScrollView>
         )

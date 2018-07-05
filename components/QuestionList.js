@@ -15,6 +15,7 @@ class QuestionList extends Component {
         }
         this.updateQuestionList=this.updateQuestionList.bind(this)
         this.deleteQuestion=this.deleteQuestion.bind(this)
+        this.getIcon=this.getIcon.bind(this)
         this.questionService=QuestionService.instance
     }
     componentDidMount() {
@@ -39,6 +40,18 @@ class QuestionList extends Component {
 
     }
 
+    getIcon(question) {
+        if (question.type === 'MC') {
+            return {name: 'list'}
+        } else if (question.type === 'ES') {
+            return {name: 'code'}
+        } else if (question.type == 'TF') {
+            return {name: 'check'}
+        } else if (question.type == 'FB') {
+            return {name: 'subject'}
+        }
+    }
+
 
     render() {
         let swipeBtns = [{
@@ -52,6 +65,7 @@ class QuestionList extends Component {
             <View>
             <Button	backgroundColor="green"
                        color="white"
+                       borderRadius={10}
                        onPress={() => {this.props.navigate.navigate("CreateQuestionEditor",
                            {isEditing: false,
                                examId: this.props.examId,
@@ -68,31 +82,31 @@ class QuestionList extends Component {
                     return x.id - y.id;
                 }).map(
                     (question, index) => (
-                        <Swipeout right={swipeBtns}
-                                  key={index}
-                                  autoClose={true}
-                                  onOpen={()=>{this.setState({questionId: question.id})}}
-                                  backgroundColor= 'transparent'>
-                            <ListItem
-                                // onPress={() => {
-                                //     if(question.type === "TrueFalse")
-                                //         this.props.navigation
-                                //             .navigate("TrueFalseQuestionEditor", {questionId: question.id})
-                                //     if(question.type === "MultipleChoice")
-                                //         this.props.navigation
-                                //             .navigate("MultipleChoiceQuestionEditor", {questionId: question.id})
-                                // }}
-                                onPress={() => {this.props.navigate.navigate("QuestionEditor",
-                                    {isEditing: true,
+
+                            <Swipeout right={swipeBtns}
+                                key={index}
+                                autoClose={true}
+                                onOpen={() => {
+                                this.setState({questionId: question.id})
+                            }}
+                                backgroundColor= 'transparent'>
+                                <ListItem
+                                    leftIcon={this.getIcon(question)}
+                                onPress={() => {
+                                this.props.navigate.navigate("QuestionEditor",
+                                    {
+                                        isEditing: true,
                                         examId: this.props.examId,
                                         questionId: question.id,
                                         questionType: question.type,
                                         updateQuestionList: this.updateQuestionList
-                                    })}}
+                                    })
+                            }}
                                 key={index}
                                 subtitle={question.description}
                                 title={question.questionTitle}/>
-                        </Swipeout>
+                                </Swipeout>
+
                             ))}
             </View>
             </View>

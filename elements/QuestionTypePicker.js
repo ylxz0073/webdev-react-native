@@ -23,7 +23,7 @@ class QuestionTypePicker extends React.Component {
                     <Picker.Item value="TF" label="True or false" />
                     <Picker.Item value="FB" label="Fill in the blanks" />
                 </Picker>
-                <Text>{this.state.questionType}</Text>
+                {/*<Text>{this.state.questionType}</Text>*/}
             </View>
         )
     }

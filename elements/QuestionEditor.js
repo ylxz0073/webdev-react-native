@@ -37,9 +37,9 @@ class QuestionEditor extends React.Component {
         // console.log(this.state.isEditing)
         return(
             <ScrollView>
-                <Text>{this.props.navigation.getParam('questionId')}
-                    {this.props.navigation.getParam('questionType')}
-                </Text>
+                {/*<Text>{this.props.navigation.getParam('questionId')}*/}
+                    {/*{this.props.navigation.getParam('questionType')}*/}
+                {/*</Text>*/}
                 {/*<QuestionTypePicker*/}
                     {/*pickQuestionType={this.pickQuestionType}/>*/}
                 {this.props.navigation.getParam('questionType') == 'MC' &&
