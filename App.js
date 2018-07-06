@@ -38,32 +38,32 @@ class Home extends React.Component {
                 <Button title="Courses"
                         onPress={() => this.props.navigation
                             .navigate('CourseList') } />
-                <Button title="Go to Screen X"
-                        onPress={() => this.props.navigation
-                            .navigate('ScreenX') } />
-                <Button title="Go to Screen A"
-                        onPress={() => this.props.navigation
-                            .navigate('ScreenA') } />
-                <Button title="Go to Screen B"
-                        onPress={() => this.props.navigation
-                            .navigate('ScreenB') } />
-                <Button title="Go to Widget List"
-                        onPress={() => this.props.navigation
-                            .navigate("WidgetList", {topicId: 32})} />
+                {/*<Button title="Go to Screen X"*/}
+                        {/*onPress={() => this.props.navigation*/}
+                            {/*.navigate('ScreenX') } />*/}
+                {/*<Button title="Go to Screen A"*/}
+                        {/*onPress={() => this.props.navigation*/}
+                            {/*.navigate('ScreenA') } />*/}
+                {/*<Button title="Go to Screen B"*/}
+                        {/*onPress={() => this.props.navigation*/}
+                            {/*.navigate('ScreenB') } />*/}
+                {/*<Button title="Go to Widget List"*/}
+                        {/*onPress={() => this.props.navigation*/}
+                            {/*.navigate("WidgetList", {topicId: 32})} />*/}
 
 
 
-                <TrueFalseQuestionEditor/>
+                {/*<TrueFalseQuestionEditor/>*/}
 
-                <QuestionTypeButtonGroupChooser/>
-                <QuestionTypePicker/>
+                {/*<QuestionTypeButtonGroupChooser/>*/}
+                {/*<QuestionTypePicker/>*/}
 
-                <Exam/>
+                {/*<Exam/>*/}
 
-                <Icons/>
-                <View style={{padding: 20}}>
-                    <TextHeadings/>
-                </View>
+                {/*<Icons/>*/}
+                {/*<View style={{padding: 20}}>*/}
+                    {/*<TextHeadings/>*/}
+                {/*</View>*/}
             </ScrollView>
         )
     }

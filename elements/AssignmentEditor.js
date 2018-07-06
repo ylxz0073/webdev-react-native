@@ -149,12 +149,21 @@ class AssignmentEditor extends React.Component {
                         // value={this.state.text}
                     />
                     <Text h4>Upload a file</Text>
+                    <View
+                        backgroundColor="white"
+                        style={{flex: 1, flexDirection: 'row', padding: 10}}>
+                        <Button
+                            borderRadius={10}
+
+                            title="Upload File"/>
                     <TextInput
                         backgroundColor="white"
                         multiline={true}
                         numberOfLines={4}
                         height={35}
+                        value={'click to upload file'}
                     />
+                        </View>
                     <Text h4>Submit a link</Text>
                     <TextInput
                         backgroundColor="white"
