@@ -1,7 +1,7 @@
 const TF_API_URL =
-    'http://localhost:8080/api/exam/EID/truefalse';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/exam/EID/truefalse';
 const ALL_TF_API_URL =
-    'http://localhost:8080/api/truefalse'
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/truefalse'
 
 let _singleton = Symbol();
 export default class TrueOrFalseQuestionService {

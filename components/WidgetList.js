@@ -21,7 +21,7 @@ class WidgetList extends Component {
         const {navigation} = this.props;
         const topicId = navigation.getParam("topicId")
         this.state.topicId = topicId
-        fetch("http://localhost:8080/api/topic/"+topicId+"/widget")
+        fetch("https://jtao-webdev-hw-2018.herokuapp.com/api/topic/"+topicId+"/widget")
             .then(response => (response.json()))
             .then(widgets => this.setState({widgets}))
     }

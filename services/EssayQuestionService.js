@@ -1,7 +1,7 @@
 const ESSAY_API_URL =
-    'http://localhost:8080/api/exam/EID/essay';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/exam/EID/essay';
 const ALL_ESSAY_API_URL =
-    'http://localhost:8080/api/essay'
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/essay'
 
 let _singleton = Symbol();
 export default class EssayService {

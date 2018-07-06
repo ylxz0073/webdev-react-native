@@ -1,7 +1,7 @@
 const QUESTION_API_URL =
-    'http://localhost:8080/api/exam/EID/question';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/exam/EID/question';
 const ALL_QUESTION_API_URL =
-    'http://localhost:8080/api/question'
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/question'
 
 let _singleton = Symbol();
 export default class QuestionService {

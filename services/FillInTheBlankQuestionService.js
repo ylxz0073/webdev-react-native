@@ -1,7 +1,7 @@
 const FB_API_URL =
-    'http://localhost:8080/api/exam/EID/blanks';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/exam/EID/blanks';
 const ALL_FB_API_URL =
-    'http://localhost:8080/api/blanks'
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/blanks'
 
 let _singleton = Symbol();
 export default class FillInTheBlankQuestionService {

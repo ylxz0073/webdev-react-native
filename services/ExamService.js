@@ -1,7 +1,7 @@
 const EXAM_API_URL =
-    'http://localhost:8080/api/topic/TID/exam';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/topic/TID/exam';
 const ALL_EXAM_API_URL =
-    'http://localhost:8080/api/exam'
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/exam'
 
 let _singleton = Symbol();
 export default class ExamService {

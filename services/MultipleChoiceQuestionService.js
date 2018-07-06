@@ -1,7 +1,7 @@
 const MC_API_URL =
-    'http://localhost:8080/api/exam/EID/multipleChoiceQuestion';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/exam/EID/multipleChoiceQuestion';
 const ALL_MC_API_URL =
-    'http://localhost:8080/api/multipleChoiceQuestion'
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/multipleChoiceQuestion'
 
 let _singleton = Symbol();
 export default class MultipleChoiceQuestionService {

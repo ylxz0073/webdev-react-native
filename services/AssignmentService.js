@@ -1,7 +1,7 @@
 const ASSIGNMENT_API_URL =
-    'http://localhost:8080/api/topic/TID/assignment';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/topic/TID/assignment';
 const ALL_ASSIGNMENT_API_URL =
-    'http://localhost:8080/api/assignment'
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/assignment'
 
 let _singleton = Symbol();
 export default class AssignmentService {
